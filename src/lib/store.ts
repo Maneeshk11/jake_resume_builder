@@ -5,6 +5,7 @@ import { navigationReducer } from "./features/navigation/navigationSlice";
 import { educationReducer } from "./features/education/educationSlice";
 import { experienceReducer } from "./features/experience/experienceSlice";
 import { projectsReducer } from "./features/projects/projectsSlice";
+import { skillsReducer } from "./features/skills/skillsSlice";
 
 const rootReducer = combineReducers({
     navigation: navigationReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     links: linksReducer,
     education: educationReducer,
     experience: experienceReducer,
-    projects: projectsReducer
+    projects: projectsReducer,
+    skills: skillsReducer,
 })
 
 export const makeStore = () => {
