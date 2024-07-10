@@ -11,6 +11,7 @@ import EducationSection from "@/containers/generate-page/education-section";
 import ExperienceSection from "@/containers/generate-page/experience-section";
 import ProjectsSection from "@/containers/generate-page/projects-section";
 import SkillsSection from "@/containers/generate-page/skills-section";
+import ConfirmSection from "@/containers/generate-page/confirm-section";
 
 export default function GeneratePage() {
     const dispatch = useAppDispatch();
@@ -37,7 +38,9 @@ export default function GeneratePage() {
                 <Tab key="skills" title="Skills" onClick={() => dispatch(setActiveTab("projects"))}>
                     <SkillsSection />
                 </Tab>
-                <Tab key="confirm" title="Confirm"></Tab>
+                <Tab key="confirm" title="Confirm">
+                    <ConfirmSection />
+                </Tab>
             </Tabs>
         </div>
     )

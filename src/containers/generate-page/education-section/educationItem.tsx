@@ -1,4 +1,4 @@
-import { EducationState, removeEducation, setMajor, setSchoolName } from "@/lib/features/education/educationSlice"
+import { EducationState, removeEducation, setDegreeType, setMajor, setSchoolName } from "@/lib/features/education/educationSlice"
 import { useAppDispatch } from "@/lib/hooks";
 import { Card, CardBody, CardHeader, DateInput, Input, Select, SelectItem, Spacer } from "@nextui-org/react"
 import { FC } from "react"
@@ -46,6 +46,8 @@ const EducationItem: FC<EducationItemProps> = ({ education, index }) => {
                     label="Degree Type"
                     placeholder="Degree"
                     labelPlacement="outside"
+                    onChange ={(e) => dispatch(setDegreeType([e.target.value, index]))}
+                    selectedKeys={[education.degree_type]}
                 >
                     <SelectItem key={"B.Tech"}>B.Tech</SelectItem>
                     <SelectItem key={"B.Arts"}>B.Arts</SelectItem>

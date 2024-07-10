@@ -1,4 +1,4 @@
-import { ExperienceState, removeExperience, setCompanyName, setCurrentlyWorking, setDescription, setLocation, setPositionTitle } from "@/lib/features/experience/experienceSlice";
+import { ExperienceState, removeExperience, setCompanyName, setCurrentlyWorking, setDescription, setExperienceType, setLocation, setPositionTitle } from "@/lib/features/experience/experienceSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { Card, CardBody, CardHeader, Checkbox, DateInput, Input, Select, SelectItem, Spacer, Textarea } from "@nextui-org/react"
 import { FC } from "react"
@@ -58,14 +58,16 @@ const ExperienceItem: FC<ExperienceItemProps> = ({ experience, index }) => {
                         label="Experience Type"
                         placeholder="Type"
                         labelPlacement="outside"
+                        selectedKeys={[experience.experience_type]}
+                        onChange={(e) => dispatch(setExperienceType([e.target.value, index]))}
                     >
-                        <SelectItem key={"fulltime"}>Full-time</SelectItem>
-                        <SelectItem key={"parttime"}>Part-time</SelectItem>
-                        <SelectItem key={"internship"}>Internship</SelectItem>
-                        <SelectItem key={"freelance"}>Freelance</SelectItem>
-                        <SelectItem key={"contract"}>Contract</SelectItem>
-                        <SelectItem key={"apprenticeship"}>Apprenticeship</SelectItem>
-                        <SelectItem key={"selfemployed"}>Self Employed</SelectItem>
+                        <SelectItem key={"Full-time"}>Full-time</SelectItem>
+                        <SelectItem key={"Part-time"}>Part-time</SelectItem>
+                        <SelectItem key={"Internship"}>Internship</SelectItem>
+                        <SelectItem key={"Freelance"}>Freelance</SelectItem>
+                        <SelectItem key={"Contract"}>Contract</SelectItem>
+                        <SelectItem key={"Apprenticeship"}>Apprenticeship</SelectItem>
+                        <SelectItem key={"Self-Employed"}>Self-Employed</SelectItem>
                     </Select>
                 </div>
                 <Spacer y={4} />
@@ -93,6 +95,7 @@ const ExperienceItem: FC<ExperienceItemProps> = ({ experience, index }) => {
                     labelPlacement="outside"
                     placeholder="A couple sentences about your role"
                     className="w-full"
+                    value={experience.description}
                     onChange={(e) => { dispatch(setDescription([e.target.value, index])) }}
                 />
             </CardBody>
