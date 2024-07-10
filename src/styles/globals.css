@@ -31,3 +31,26 @@ body {
     text-wrap: balance;
   }
 }
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 29rem;
+  }
+}
+
+@keyframes blink {
+  from { border-color: transparent }
+  to { border-color: orange; }
+}
+
+
+.typed-out {
+  border-right: 0.1em solid orange;
+  animation: 
+    typing 1s steps(50, end) forwards,
+    blink .8s infinite;
+  white-space: nowrap;
+}
