@@ -40,7 +40,7 @@ const SkillsSection = () => {
                             return (
                                 <>
                                     <SkillSetItem skillSet={key} value={value} />
-                                    <Spacer y={5} />
+                                    <Spacer y={6} />
                                 </>
                             )
                         })

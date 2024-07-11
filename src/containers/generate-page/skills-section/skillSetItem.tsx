@@ -39,7 +39,7 @@ const SkillSetItem: FC<SkillSetItemProps> = ({ skillSet, value }) => {
                 </Button>
             </div>
             <Spacer y={3} />
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-y-2">
                 {
                     value.map((skill, _) => {
                         return (
