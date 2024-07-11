@@ -14,7 +14,7 @@ const LinksSection = () => {
 
     return (
         <Card isBlurred className="">
-            <CardBody className="p-8">
+            <CardBody className="py-8">
                 <span className="font-semibold text-2xl flex justify-center">Upload your links</span>
                 <Spacer y={6} />
                 <div >

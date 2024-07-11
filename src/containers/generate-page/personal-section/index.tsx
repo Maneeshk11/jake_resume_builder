@@ -11,7 +11,7 @@ const PersonalSection = () => {
 
     return (
         <Card isBlurred>
-            <CardBody className="p-8" >
+            <CardBody className="py-8" >
                 <div className="flex flex-col items-center w-full">
                     <span className="font-semibold text-2xl">Let's get started!</span>
                     <Spacer y={4} />
