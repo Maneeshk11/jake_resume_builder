@@ -1,6 +1,6 @@
-import { ExperienceState, removeExperience, setCompanyName, setCurrentlyWorking, setDescription, setExperienceType, setLocation, setPositionTitle } from "@/lib/features/experience/experienceSlice";
+import { addDescriptionPoint, ExperienceState, removeDescriptionPoint, removeExperience, setCompanyName, setCurrentlyWorking, setDescription, setEndDate, setExperienceType, setLocation, setPositionTitle, setStartDate } from "@/lib/features/experience/experienceSlice";
 import { useAppDispatch } from "@/lib/hooks";
-import { Card, CardBody, CardHeader, Checkbox, DateInput, Input, Select, SelectItem, Spacer, Textarea } from "@nextui-org/react"
+import { Button, Card, CardBody, CardHeader, Checkbox, DateInput, DateValue, Input, Select, SelectItem, Spacer, Textarea } from "@nextui-org/react"
 import { FC } from "react"
 import { IoTrashOutline } from "react-icons/io5";
 
@@ -73,31 +73,60 @@ const ExperienceItem: FC<ExperienceItemProps> = ({ experience, index }) => {
                 <Spacer y={4} />
                 <div className="flex">
                     <DateInput
-                        label="Start Date"
+                        label="Start Date"  
                         labelPlacement="outside"
+                        onChange={(e) => {dispatch(setStartDate([e, index]))}}
                     />
                     <Spacer x={3} />
                     <DateInput
                         label="End Date"
                         labelPlacement="outside"
+                        onChange={(e) => {dispatch(setEndDate([e, index]))}}
                         isDisabled={experience.currently_working}
                     />
                 </div>
                 <Spacer y={4} />
                 <Checkbox color="default"
-                    onChange={(e) => { dispatch(setCurrentlyWorking([e.target.checked, index])) }}
+                    onChange={(e) => { 
+                        dispatch(setEndDate([{} as DateValue, index]))
+                        dispatch(setCurrentlyWorking([e.target.checked, index])) 
+                    }}
                 >I currently work here</Checkbox>
                 <Spacer y={4} />
-                <Textarea
-                    isRequired
-                    variant="flat"
-                    label="Description"
-                    labelPlacement="outside"
-                    placeholder="A couple sentences about your role"
-                    className="w-full"
-                    value={experience.description}
-                    onChange={(e) => { dispatch(setDescription([e.target.value, index])) }}
-                />
+                <div>
+                    <span className="text-sm">Description: (Explain your experience in points)</span>
+                    <Spacer y={2} />
+                </div>
+                {
+                    experience.description.map((desc, descIndex) => {
+                        return (
+                            <>
+                                <Textarea
+                                    isRequired
+                                    variant="flat"
+                                    labelPlacement="outside"
+                                    placeholder={"Point " + (descIndex + 1)}
+                                    className="w-full"
+                                    minRows={1}
+                                    maxRows={3}
+                                    value={experience.description[descIndex]}
+                                    endContent={<IoTrashOutline cursor={descIndex > 0 ? "pointer" : "not-allowed"}
+                                        color={descIndex > 0 ? "#ff0033" : "#3f3f46"}
+                                        onClick={descIndex > 0 ? (() => dispatch(removeDescriptionPoint([descIndex, index]))) : () => { }} />
+                                    }
+                                    onChange={(e) => { dispatch(setDescription([e.target.value, descIndex, index])) }}
+                                />
+                                <Spacer y={2} />
+                            </>
+                        )
+                    })
+                }
+                <div className="flex justify-end">
+                    <Button onClick={() => { dispatch(addDescriptionPoint(index)) }}
+                        className="w-fit ml-auto"
+                    >Add a point</Button>
+                </div>
+
             </CardBody>
         </Card>
     )

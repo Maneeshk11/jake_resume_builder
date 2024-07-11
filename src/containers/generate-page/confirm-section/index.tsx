@@ -5,6 +5,7 @@ import Personal from "./section-wize-details/personal";
 import Links from "./section-wize-details/links";
 import Education from "./section-wize-details/education";
 import Experience from "./section-wize-details/experience";
+import Projects from "./section-wize-details/projects";
 
 
 const ConfirmSection = () => {
@@ -22,6 +23,8 @@ const ConfirmSection = () => {
                 <Education />
                 <Spacer y={6}/>
                 <Experience />
+                <Spacer y={6}/>
+                <Projects />
             </CardBody>
             <CardFooter className="w-full flex justify-end">
                 <Button color="default" onClick={() => dispatch(setActiveTab("skills"))} >

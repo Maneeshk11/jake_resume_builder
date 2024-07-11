@@ -25,6 +25,10 @@ const Education = () => {
                                         <TableCell>{edu.school_name || "-"}</TableCell>
                                     </TableRow>
                                     <TableRow>
+                                        <TableCell>Location</TableCell>
+                                        <TableCell>{edu.location || "-"}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
                                         <TableCell>Major</TableCell>
                                         <TableCell>{edu.major || "-"}</TableCell>
                                     </TableRow>
@@ -34,11 +38,11 @@ const Education = () => {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Start Date</TableCell>
-                                        <TableCell>{edu.start_date || "-"}</TableCell>
+                                        <TableCell>{edu.start_date?.toString() || "-"}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>End Date</TableCell>
-                                        <TableCell>{edu.end_date || "-"}</TableCell>
+                                        <TableCell>{edu.end_date?.toString() || "-"}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>

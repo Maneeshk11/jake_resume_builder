@@ -1,4 +1,4 @@
-import { ProjectsState, removeProject, removeTechUsed, setDescription, setProjectTitle, setTechUsed } from "@/lib/features/projects/projectsSlice";
+import { addDescriptionPoint, ProjectsState, removeDescriptionPoint, removeProject, removeTechUsed, setDescription, setProjectTitle, setStartDate, setTechUsed } from "@/lib/features/projects/projectsSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { Button, Card, CardBody, CardHeader, Chip, DateInput, Input, Spacer, Textarea } from "@nextui-org/react";
 import { FC, useState } from "react";
@@ -37,6 +37,7 @@ const ProjectsItem: FC<ProjectsItemProps> = ({ project, index }) => {
                     <DateInput
                         label="Start Date"
                         labelPlacement="outside"
+                        onChange={(e) => {dispatch(setStartDate([e, index]))}}
                     />
                     <Spacer x={3} />
                     <DateInput
@@ -45,15 +46,41 @@ const ProjectsItem: FC<ProjectsItemProps> = ({ project, index }) => {
                     />
                 </div>
                 <Spacer y={4} />
-                <Textarea
-                    // isRequired
-                    variant="flat"
-                    label="Description"
-                    labelPlacement="outside"
-                    placeholder="A couple sentences about this project"
-                    className="w-full"
-                    onChange={(e) => { dispatch(setDescription([e.target.value, index])) }}
-                />
+                <>
+                    <div>
+                        <span className="text-sm">Description: (Explain your project in points)</span>
+                        <Spacer y={2} />
+                    </div>
+                    {
+                        project.description.map((desc, descIndex) => {
+                            return (
+                                <>
+                                    <Textarea
+                                        isRequired
+                                        variant="flat"
+                                        labelPlacement="outside"
+                                        placeholder={"Point " + (descIndex + 1)}
+                                        className="w-full"
+                                        minRows={1}
+                                        maxRows={3}
+                                        value={project.description[descIndex]}
+                                        endContent={<IoTrashOutline cursor={descIndex > 0 ? "pointer" : "not-allowed"}
+                                            color={descIndex > 0 ? "#ff0033" : "#3f3f46"}
+                                            onClick={descIndex > 0 ? (() => dispatch(removeDescriptionPoint([descIndex, index]))) : () => { }} />
+                                        }
+                                        onChange={(e) => { dispatch(setDescription([e.target.value, descIndex, index])) }}
+                                    />
+                                    <Spacer y={2} />
+                                </>
+                            )
+                        })
+                    }
+                    <div className="flex justify-end">
+                        <Button onClick={() => { dispatch(addDescriptionPoint(index)) }}
+                            className="w-fit ml-auto"
+                        >Add a point</Button>
+                    </div>
+                </>
                 <Spacer y={4} />
                 <div>
                     <span className="text-sm">List tools and technologies used: (Max 5)</span>

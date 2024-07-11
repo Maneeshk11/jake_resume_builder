@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`dark ${inter.className}`}>
         <Providers>
-          <div className="relative flex flex-col h-screen">
+          <div className="relative flex flex-col min-h-screen">
             <Navbar />
             {children}
           </div>

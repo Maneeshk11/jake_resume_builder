@@ -1,11 +1,12 @@
+import { DateValue } from "@nextui-org/react";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ProjectsState {
   project_title: string;
   tech_used: string[];
-  start_date: string;
-  end_date: string;
-  description: string;
+  start_date: DateValue | null;
+  end_date: DateValue | null;
+  description: string[];
 }
 
 const initialState = {
@@ -14,9 +15,9 @@ const initialState = {
     {
       project_title: "",
       tech_used: [],
-      start_date: "",
-      end_date: "",
-      description: "",
+      start_date: null,
+      end_date: null,
+      description: [""],
     },
   ] as ProjectsState[],
 };
@@ -30,9 +31,9 @@ const projectsSlice = createSlice({
       state.projects.push({
         project_title: "",
         tech_used: [],
-        start_date: "",
-        end_date: "",
-        description: "",
+        start_date: null,
+        end_date: null,
+        description: [""],
       });
     },
     removeProject: (state, action: PayloadAction<number>) => {
@@ -56,17 +57,31 @@ const projectsSlice = createSlice({
         (tech) => tech !== value
       );
     },
-    setStartDate: (state, action: PayloadAction<[string, number]>) => {
+    setStartDate: (state, action: PayloadAction<[DateValue, number]>) => {
       const [value, index] = action.payload;
       state.projects[index].start_date = value;
     },
-    setEndDate: (state, action: PayloadAction<[string, number]>) => {
+    setEndDate: (state, action: PayloadAction<[DateValue, number]>) => {
       const [date, index] = action.payload;
       state.projects[index].end_date = date;
     },
-    setDescription: (state, action: PayloadAction<[string, number]>) => {
-      const [value, index] = action.payload;
-      state.projects[index].description = value;
+    setDescription: (
+      state,
+      action: PayloadAction<[string, number, number]>
+    ) => {
+      const [value, descIndex, index] = action.payload;
+      state.projects[index].description[descIndex] = value;
+    },
+    addDescriptionPoint: (state, action: PayloadAction<number>) => {
+      const index = action.payload;
+      state.projects[index].description.push("");
+    },
+    removeDescriptionPoint: (
+      state,
+      action: PayloadAction<[number, number]>
+    ) => {
+      const [descIndex, index] = action.payload;
+      state.projects[index].description.splice(descIndex, 1);
     },
   },
 });
@@ -81,6 +96,8 @@ export const {
   setEndDate,
   setDescription,
   removeTechUsed,
+  addDescriptionPoint,
+  removeDescriptionPoint,
 } = projectsSlice.actions;
 
 export const projectsReducer = projectsSlice.reducer;

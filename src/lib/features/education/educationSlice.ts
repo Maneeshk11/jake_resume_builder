@@ -1,11 +1,13 @@
+import { DateValue } from "@nextui-org/react";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface EducationState {
   school_name: string;
   major: string;
   degree_type: string;
-  start_date: string;
-  end_date: string;
+  start_date: DateValue | null;
+  end_date: DateValue | null;
+  location: string;
 }
 
 const initialState = {
@@ -15,8 +17,9 @@ const initialState = {
       school_name: "",
       major: "",
       degree_type: "",
-      start_date: "",
-      end_date: "",
+      start_date: null,
+      end_date: null,
+      location: "",
     },
   ] as EducationState[],
 };
@@ -31,8 +34,9 @@ export const educationSlice = createSlice({
         school_name: "",
         major: "",
         degree_type: "",
-        start_date: "",
-        end_date: "",
+        start_date: null,
+        end_date: null,
+        location: "",
       } as EducationState);
     },
     removeEducation: (state, action: PayloadAction<number>) => {
@@ -48,15 +52,19 @@ export const educationSlice = createSlice({
       const [value, index] = action.payload;
       state.educations[index].major = value;
     },
+    setLocation: (state, action: PayloadAction<[string, number]>) => {
+      const [value, index] = action.payload;
+      state.educations[index].location = value;
+    },
     setDegreeType: (state, action: PayloadAction<[string, number]>) => {
       const [value, index] = action.payload;
       state.educations[index].degree_type = value;
     },
-    setStartDate: (state, action: PayloadAction<[string, number]>) => {
+    setStartDate: (state, action: PayloadAction<[DateValue, number]>) => {
       const [value, index] = action.payload;
       state.educations[index].start_date = value;
     },
-    setEndDate: (state, action: PayloadAction<[string, number]>) => {
+    setEndDate: (state, action: PayloadAction<[DateValue, number]>) => {
       const [value, index] = action.payload;
       state.educations[index].end_date = value;
     },
@@ -71,6 +79,7 @@ export const {
   setEndDate,
   addEducation,
   removeEducation,
+  setLocation,
 } = educationSlice.actions;
 
 export const educationReducer = educationSlice.reducer;

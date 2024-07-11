@@ -17,7 +17,7 @@ const Experience = () => {
                         <>
                             <Table>
                                 <TableHeader>
-                                    <TableColumn>Experience {index + 1}</TableColumn>
+                                    <TableColumn width={"30%"}>Experience {index + 1}</TableColumn>
                                     <TableColumn>{""}</TableColumn>
                                 </TableHeader>
                                 <TableBody>
@@ -39,15 +39,23 @@ const Experience = () => {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Start Date</TableCell>
-                                        <TableCell>{exp.start_date || "-"}</TableCell>
+                                        <TableCell>{exp.start_date?.toString() || "-"}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>End Date</TableCell>
-                                        <TableCell>{exp.currently_working ? "Currently working" : exp.end_date || "-"}</TableCell>
+                                        <TableCell>{exp.currently_working ? "Currently working" : exp.end_date?.toString() || "-"}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell>Description</TableCell>
-                                        <TableCell>{exp.description || "-"}</TableCell>
+                                        <TableCell className="flex flex-col gap-y-2">
+                                                {
+                                                    exp.description.map((desc, index) => {
+                                                        return (
+                                                            <li>{desc}</li>
+                                                        )
+                                                    })
+                                                }
+                                        </TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
