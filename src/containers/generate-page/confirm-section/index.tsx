@@ -7,6 +7,7 @@ import Education from "./section-wize-details/education";
 import Experience from "./section-wize-details/experience";
 import Projects from "./section-wize-details/projects";
 import Skills from "./section-wize-details/skills";
+import RelevantCoursework from "./section-wize-details/relevant_coursework";
 
 
 const ConfirmSection = () => {
@@ -22,6 +23,8 @@ const ConfirmSection = () => {
                 <Links />
                 <Spacer y={6}/>
                 <Education />
+                <Spacer y={6}/>
+                <RelevantCoursework />
                 <Spacer y={6}/>
                 <Experience />
                 <Spacer y={6}/>

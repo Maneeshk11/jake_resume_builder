@@ -22,6 +22,7 @@ const initialState = {
       location: "",
     },
   ] as EducationState[],
+  relevant_coursework: [] as string[],
 };
 
 export const educationSlice = createSlice({
@@ -68,6 +69,14 @@ export const educationSlice = createSlice({
       const [value, index] = action.payload;
       state.educations[index].end_date = value;
     },
+    addCoursework: (state, action: PayloadAction<string>) => {
+      state.relevant_coursework.push(action.payload);
+    },
+    removeCoursework: (state, action: PayloadAction<string>) => {
+      state.relevant_coursework = state.relevant_coursework.filter(
+        (s) => s !== action.payload
+      );
+    },
   },
 });
 
@@ -80,6 +89,8 @@ export const {
   addEducation,
   removeEducation,
   setLocation,
+  addCoursework,
+  removeCoursework,
 } = educationSlice.actions;
 
 export const educationReducer = educationSlice.reducer;

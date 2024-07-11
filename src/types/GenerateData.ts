@@ -1,5 +1,6 @@
 import { EducationState } from "@/lib/features/education/educationSlice";
 import { ExperienceState } from "@/lib/features/experience/experienceSlice";
+import { ProjectsState } from "@/lib/features/projects/projectsSlice";
 
 export type GenerateData = {
   first_name: string;
@@ -15,4 +16,6 @@ export type GenerateData = {
   }[];
   education: EducationState[];
   experience: ExperienceState[];
+  projects: ProjectsState[];
+  relevant_coursework: string[];
 };

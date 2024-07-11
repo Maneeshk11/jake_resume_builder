@@ -88,7 +88,6 @@ const ExperienceItem: FC<ExperienceItemProps> = ({ experience, index }) => {
                 <Spacer y={4} />
                 <Checkbox color="default"
                     onChange={(e) => { 
-                        dispatch(setEndDate([{} as DateValue, index]))
                         dispatch(setCurrentlyWorking([e.target.checked, index])) 
                     }}
                 >I currently work here</Checkbox>

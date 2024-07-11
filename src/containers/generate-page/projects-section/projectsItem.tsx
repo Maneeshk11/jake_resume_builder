@@ -1,4 +1,4 @@
-import { addDescriptionPoint, ProjectsState, removeDescriptionPoint, removeProject, removeTechUsed, setDescription, setProjectTitle, setStartDate, setTechUsed } from "@/lib/features/projects/projectsSlice";
+import { addDescriptionPoint, ProjectsState, removeDescriptionPoint, removeProject, removeTechUsed, setDescription, setEndDate, setProjectTitle, setStartDate, setTechUsed } from "@/lib/features/projects/projectsSlice";
 import { useAppDispatch } from "@/lib/hooks";
 import { Button, Card, CardBody, CardHeader, Chip, DateInput, Input, Spacer, Textarea } from "@nextui-org/react";
 import { FC, useState } from "react";
@@ -43,6 +43,7 @@ const ProjectsItem: FC<ProjectsItemProps> = ({ project, index }) => {
                     <DateInput
                         label="End Date"
                         labelPlacement="outside"
+                        onChange={(e) => {dispatch(setEndDate([e, index]))}}
                     />
                 </div>
                 <Spacer y={4} />

@@ -1,8 +1,9 @@
-import EducationItem from "./educationItem"; 
+import EducationItem from "./educationItem";
 import { addEducation } from "@/lib/features/education/educationSlice";
 import { setActiveTab } from "@/lib/features/navigation/navigationSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { Button, Card, CardBody, CardFooter, Spacer } from "@nextui-org/react"
+import RelevantCourseworkItem from "./relevant_courseworkItem";
 
 
 const EducationSection = () => {
@@ -26,6 +27,11 @@ const EducationSection = () => {
                 <Button color="default" onClick={() => dispatch(addEducation())}>
                     Add More
                 </Button>
+                <Spacer y={8} />
+                <span className="font-semibold text-2xl">Add Relevant Coursework (Max: 8)</span>
+                <Spacer y={3} />
+                <RelevantCourseworkItem />
+
             </CardBody>
             <CardFooter className="w-full flex justify-end">
                 <Button color="default" onClick={() => dispatch(setActiveTab("links"))} >
