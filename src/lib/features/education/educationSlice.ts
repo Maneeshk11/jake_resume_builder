@@ -5,7 +5,7 @@ export interface EducationState {
   school_name: string;
   major: string;
   degree_type: string;
-  start_date: DateValue | null;
+  start_date: DateValue | null ;
   end_date: DateValue | null;
   location: string;
 }

@@ -1,6 +1,3 @@
-import { EducationState } from "@/lib/features/education/educationSlice";
-import { ExperienceState } from "@/lib/features/experience/experienceSlice";
-import { ProjectsState } from "@/lib/features/projects/projectsSlice";
 
 export type GenerateData = {
   first_name: string;
@@ -12,10 +9,32 @@ export type GenerateData = {
   location: string;
   skills: {
     category: string;
-    skill_set: string[];
+    skill_set: string;
   }[];
-  education: EducationState[];
-  experience: ExperienceState[];
-  projects: ProjectsState[];
+  education: {
+    school_name: string;
+    major: string;
+    degree_type: string;
+    start_date: string | null;
+    end_date: string | null;
+    location: string;
+  }[];
+  experience: {
+    company_name: string;
+    location: string;
+    position_title: string;
+    experience_type: string;
+    start_date: string | null;
+    end_date: string | null;
+    currently_working: boolean;
+    description: string[];
+  }[];
+  projects: {
+    project_title: string;
+    tech_used: string;
+    start_date: string | null;
+    end_date: string | null;
+    description: string[];
+  }[];
   relevant_coursework: string[];
 };
